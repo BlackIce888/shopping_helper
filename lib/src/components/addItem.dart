@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2019.
+ * Andreas Diesendorf <andiesendorf@gmail.com>
+ */
+
 import 'package:flutter/material.dart';
 
 class CreateProductButton extends StatelessWidget {

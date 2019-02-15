@@ -1,22 +1,51 @@
+/*
+ * Copyright (c) 2019.
+ * Andreas Diesendorf <andiesendorf@gmail.com>
+ */
+
 import 'package:flutter/material.dart';
-import 'package:my_shopping_helper/src/models/models.dart';
+import 'package:money/money.dart';
+import 'package:shopping_helper/src/Domain/Model/Entity/Product.dart';
 
 class ItemListWidget extends StatelessWidget {
-    final HomeViewModel model;
+  final Future<List<Product>> list;
 
-    ItemListWidget(this.model);
+  ItemListWidget(this.list);
 
-    @override
-    Widget build(BuildContext context) {
-        return ListView(
-            children: model.items.map((Item item) =>
-                ListTile(
-                    title: Text(item.name),
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+      future: list,
+      builder: (context, snapshot) {
+        print(snapshot);
+        switch (snapshot.connectionState) {
+          case ConnectionState.none:
+          case ConnectionState.active:
+          case ConnectionState.waiting:
+            return CircularProgressIndicator();
+          case ConnectionState.done:
+            if (snapshot.hasError) {
+              return Text('Error: ${snapshot.error}');
+            } else {
+              List listItemInfo = snapshot.data;
+              return ListView.builder(
+                itemCount: snapshot.data.length,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    title: Text(listItemInfo[index].name),
                     leading: IconButton(
-                        icon: Icon(Icons.delete),
-                        onPressed: () => model.onRemoveItem(item),
+                      icon: Icon(Icons.delete),
+                      onPressed: () => null,
                     ),
-                )).toList(),
-        );
-    }
+                    trailing: Text(
+                        Money(listItemInfo[index].price, Currency('EUR'))
+                            .toString()),
+                  );
+                },
+              );
+            }
+        }
+      },
+    );
+  }
 }

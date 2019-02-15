@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "180957098425",
+    "firebase_url": "https://shopping-helper-39b5c.firebaseio.com",
+    "project_id": "shopping-helper-39b5c",
+    "storage_bucket": "shopping-helper-39b5c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:180957098425:android:aedfade79832d945",
+        "android_client_info": {
+          "package_name": "yuansolo.shoppinghelper"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "180957098425-06jutmr1djl260o14srepbu3t7objuqr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhVKnjYyo3NQ60Zn53xvc0OXTOrTgYklk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

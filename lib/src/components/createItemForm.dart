@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:autocomplete_textfield/autocomplete_textfield.dart';
+/*
+ * Copyright (c) 2019.
+ * Andreas Diesendorf <andiesendorf@gmail.com>
+ */
 
 class CreateItemForm extends StatelessWidget {
 
@@ -28,10 +32,7 @@ class CreateItemForm extends StatelessWidget {
                             decoration: InputDecoration(
                                 labelText: 'Price',
                             ),
-                            keyboardType: TextInputType.numberWithOptions(
-                                signed: false,
-                                decimal: false
-                            ),
+                            keyboardType: TextInputType.number,
                         ),
                         RaisedButton(
                             onPressed: null, /* () {
