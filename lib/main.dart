@@ -4,32 +4,39 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:shopping_helper/src/Domain/Implementation/ProductRepository.dart';
-import 'package:shopping_helper/src/Domain/Model/Entity/Product.dart';
-import 'package:shopping_helper/src/components/components.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:redux/redux.dart';
+import 'package:redux_thunk/redux_thunk.dart';
+import 'package:shopping_helper/src/Presentation/Framework/Models/AppState.dart';
+import 'package:shopping_helper/src/Presentation/Framework/Reducers/AppStateReducer.dart';
+import 'package:shopping_helper/src/Presentation/Pages/ProductPage.dart';
 
 void main() => runApp(ShoppingHelperApp());
 
 class ShoppingHelperApp extends StatelessWidget {
-
     @override
     Widget build(BuildContext context) {
-        ProductRepository productRepository = ProductRepository.instance;
-        Future<List<Product>> productList = productRepository.getAll();
+        final Store<AppState> store = Store<AppState>(
+            appStateReducer,
+            middleware: [thunkMiddleware],
+            initialState: AppState.initialState(),
+        );
 
-        return MaterialApp(
-            title: 'Welcome to Flutter',
-            home: Scaffold(
-                appBar: AppBar(
-                    title: Text('Welcome to Flutter'),
+        return StoreProvider<AppState>(
+            store: store,
+            child: MaterialApp(
+                title: 'ShoppingHelper App',
+                theme: ThemeData(
+                    primarySwatch: Colors.blue,
                 ),
-                body: Column(
-                    children: <Widget>[
-                        Expanded(child: ItemListWidget(productList)),
-                        //Expanded(child: Text('hi')),
-                        RemoveItemsButton(),
-                    ],
-                ),
+                home: ProductPage(),
+                routes:
+                <String, WidgetBuilder>{
+                    //'/home': (BuildContext context) => HomePage(),
+                    '/products': (BuildContext context) => ProductPage(),
+                    //'/recipes': (BuildContext context) => RecipesPage(),
+                    //'/products/createItem': (BuildContext context) => CreateProductPage(),
+                },
             ),
         );
     }
