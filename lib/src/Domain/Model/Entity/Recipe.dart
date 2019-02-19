@@ -34,4 +34,25 @@ class Recipe {
     List<ProductAmount> get ingredients => _ingredients;
 
     String get instructions => _instructions;
+
+
+    factory Recipe.fromJson(Map<String, dynamic> json) =>
+        Recipe(
+            json["id"],
+            json["name"],
+            json["prepTime"],
+            json["cookTime"],
+            json["ingredients"],
+            json["instructions"],
+        );
+
+    Map<String, dynamic> toJson() =>
+        {
+            "id": id,
+            "name": name,
+            "prepTime": prepTime,
+            "cookTime": cookTime,
+            "ingredients": ingredients,
+            "instructions": instructions,
+        };
 }

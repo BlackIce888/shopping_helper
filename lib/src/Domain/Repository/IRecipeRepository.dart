@@ -6,8 +6,11 @@
 import 'package:shopping_helper/src/Domain/Model/Entity/Recipe.dart';
 
 abstract class IRecipeRepository {
-  List<Recipe>getAll();
-  Recipe findById(int id);
-  Future<void> save();
-  Future<void> remove(int id);
+  Future<List<Recipe>> getAll();
+
+  Future<Recipe> getById(int id);
+
+  void save(Recipe recipe);
+
+  void remove(int id);
 }

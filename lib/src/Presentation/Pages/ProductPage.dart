@@ -8,7 +8,7 @@ import 'package:redux/redux.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:shopping_helper/src/Presentation/Framework/Models/AppState.dart';
 import 'package:shopping_helper/src/Presentation/Framework/Models/ProductViewModel.dart';
-import 'package:shopping_helper/src/Presentation/components/components.dart';
+import 'package:shopping_helper/src/Presentation/Components/Components.dart';
 
 class ProductPage extends StatelessWidget {
     @override

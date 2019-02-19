@@ -6,8 +6,11 @@
 import 'package:shopping_helper/src/Domain/Model/Entity/Shop.dart';
 
 abstract class IShopRepository {
-  List<Shop>getAll();
-  Shop findById(int id);
-  Future<void> save();
-  Future<void> remove(int id);
+  Future<List<Shop>> getAll();
+
+  Future<Shop> getById(int id);
+
+  void save(Shop shop);
+
+  void remove(int id);
 }

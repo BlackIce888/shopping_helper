@@ -10,11 +10,23 @@ class Shop {
     String _name;
 
     Shop(id, name) {
-        _id == null ? throw ArgumentException : this._id = id;
-        _name == null ? throw ArgumentException : this._name = name;
+        id == null ? throw ArgumentException : this._id = id;
+        name == null ? throw ArgumentException : this._name = name;
     }
 
     get id => _id;
 
     get name => _name;
+
+    factory Shop.fromJson(Map<String, dynamic> json) =>
+        Shop(
+            json["id"],
+            json["name"],
+        );
+
+    Map<String, dynamic> toJson() =>
+        {
+            "id": id,
+            "name": name,
+        };
 }

@@ -3,42 +3,42 @@
  * Andreas Diesendorf <andiesendorf@gmail.com>
  */
 
-import 'package:shopping_helper/src/Domain/Model/Entity/Product.dart';
-import 'package:shopping_helper/src/Domain/Repository/IProductRepository.dart';
+import 'package:shopping_helper/src/Domain/Model/Entity/Recipe.dart';
+import 'package:shopping_helper/src/Domain/Repository/IRecipeRepository.dart';
 import 'package:shopping_helper/src/Infrastructure/Implementation/SQLiteDatabaseService.dart';
 
-class ProductRepository implements IProductRepository {
-    static final ProductRepository instance = ProductRepository._();
-    static final String _tableName = 'product';
+class RecipeRepository implements IRecipeRepository {
+    static final RecipeRepository instance = RecipeRepository._();
+    static final String _tableName = 'recipe';
     final SQLiteDatabaseService _databaseService = SQLiteDatabaseService(_tableName);
 
-    ProductRepository._();
+    RecipeRepository._();
 
     @override
-    Future<Product> getById(int id) async {
+    Future<Recipe> getById(int id) async {
         List<Map<String, dynamic>> dataset = await _databaseService.findById(id);
         if (dataset.length != 1) {
             throw Exception;
         }
-        return Product.fromJson(dataset.first);
+        return Recipe.fromJson(dataset.first);
     }
 
     @override
-    Future<List<Product>> getAll() async{
+    Future<List<Recipe>> getAll() async{
         List<Map<String, dynamic>> dataset = await _databaseService.findAll();
-        List<Product> result = [];
+        List<Recipe> result = [];
         for (Map<String, dynamic> data in dataset) {
             if (data.isNotEmpty) {
-                result.add(Product.fromJson(data));
+                result.add(Recipe.fromJson(data));
+
             }
         }
-        print(result);
         return result;
     }
 
     @override
-    Future save(Product product) async {
-        bool result = await _databaseService.save(product.toJson());
+    Future save(Recipe recipe) async {
+        bool result = await _databaseService.save(recipe.toJson());
         if (!result) {
             throw Exception;
         }

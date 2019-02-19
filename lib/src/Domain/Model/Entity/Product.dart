@@ -3,8 +3,6 @@
  * Andreas Diesendorf <andiesendorf@gmail.com>
  */
 
-import 'dart:convert';
-
 import 'package:shopping_helper/src/Domain/Exception/ArgumentException.dart';
 
 class Product {

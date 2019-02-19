@@ -1,5 +1,11 @@
 import 'package:shopping_helper/src/Domain/Model/Entity/Product.dart';
 
+class GetProductListAction {
+    final List<Product> productList;
+
+    GetProductListAction(this.productList);
+}
+
 class CreateProductAction {
   final Product product;
 
