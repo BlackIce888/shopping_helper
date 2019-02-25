@@ -32,7 +32,6 @@ class ProductRepository implements IProductRepository {
                 result.add(Product.fromJson(data));
             }
         }
-        print(result);
         return result;
     }
 
