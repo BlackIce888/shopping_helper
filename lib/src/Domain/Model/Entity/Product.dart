@@ -9,13 +9,13 @@ class Product {
     int _id;
     int _shopId;
     String _name;
-    int _price;
+    double _price;
 
-    Product(int id, int shopId, String name, int price) {
-      id == null ? throw ArgumentException : this._id = id;
-      shopId == null ? throw ArgumentException : this._shopId = shopId;
-      name == null ? throw ArgumentException : this._name = name;
-      price == null ? throw ArgumentException : this._price = price;
+    Product(int id, int shopId, String name, double price) {
+        this._id = id;
+        shopId == null ? throw ArgumentException : this._shopId = shopId;
+        name == null ? throw ArgumentException : this._name = name;
+        price == null ? throw ArgumentException : this._price = price;
     }
 
     int get id => _id;
@@ -24,7 +24,7 @@ class Product {
 
     String get name => _name;
 
-    int get price => _price;
+    double get price => _price;
 
     factory Product.fromJson(Map<String, dynamic> json) =>
         Product(

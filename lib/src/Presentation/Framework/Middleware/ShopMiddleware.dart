@@ -10,7 +10,7 @@ import 'package:shopping_helper/src/Presentation/Framework/Models/AppState.dart'
 
 List<Middleware<AppState>> getShopMiddleware(ShopRepository shopRepo) {
     return [
-        TypedMiddleware<AppState, GetShopListAction>(
+        TypedMiddleware<AppState, LoadShopListAction>(
             _getShopList(shopRepo)),
         TypedMiddleware<AppState, CreateShopAction>(
             _createShop(shopRepo)),
@@ -21,12 +21,12 @@ List<Middleware<AppState>> getShopMiddleware(ShopRepository shopRepo) {
 
 void Function(
     Store<AppState> store,
-    GetShopListAction action,
+    LoadShopListAction action,
     NextDispatcher next,
     ) _getShopList(ShopRepository repository) {
     return (store, action, next) {
         repository.getAll().then((_) {
-            next(action);
+            next(ShopListLoadedAction(_));
         });
     };
 }
@@ -49,8 +49,9 @@ void Function(
     NextDispatcher next,
     ) _createShop(ShopRepository repository) {
     return (store, action, next) {
-        repository.save(action.shop).then((_) {
+        repository.insert(action.shop).then((_) {
             next(action);
         });
+        store.dispatch(LoadShopListAction());
     };
 }

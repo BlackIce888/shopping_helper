@@ -36,15 +36,9 @@ void Function(
     NextDispatcher next,
     ) _initApp(ProductRepository productRepo, ShopRepository shopRepo, RecipeRepository recipeRepo) {
     return (store, action, next) {
-        productRepo.getAll().then((_) {
-            next(action);
-        });
-        shopRepo.getAll().then((_) {
-            store.dispatch(GetShopListAction(_));
-        });
-        recipeRepo.getAll().then((_) {
-            store.dispatch(GetRecipeListAction(_));
-        });
+        next(LoadProductListAction());
+        next(LoadShopListAction());
+        next(LoadRecipeListAction());
         next(action);
         //List<Shop> shopList = await shopRepo.getAll();
     };

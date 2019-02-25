@@ -5,16 +5,24 @@
 
 import 'package:shopping_helper/src/Domain/Model/Entity/Recipe.dart';
 
-class GetRecipeListAction {
+class LoadRecipeListAction {}
+
+class RecipeListLoadedAction {
     final List<Recipe> recipeList;
 
-    GetRecipeListAction(this.recipeList);
+    RecipeListLoadedAction(this.recipeList);
 }
 
 class CreateRecipeAction {
   final Recipe recipe;
 
   CreateRecipeAction(this.recipe);
+}
+
+class UpdateRecipeAction {
+  final Recipe recipe;
+
+  UpdateRecipeAction(this.recipe);
 }
 
 class RemoveRecipeAction {

@@ -37,8 +37,16 @@ class RecipeRepository implements IRecipeRepository {
     }
 
     @override
-    Future save(Recipe recipe) async {
-        bool result = await _databaseService.save(recipe.toJson());
+    Future update(Recipe recipe) async {
+        bool result = await _databaseService.update(recipe.toJson());
+        if (!result) {
+            throw Exception;
+        }
+    }
+
+    @override
+    Future insert(Recipe recipe) async {
+        bool result = await _databaseService.insert(recipe.toJson());
         if (!result) {
             throw Exception;
         }
@@ -47,6 +55,14 @@ class RecipeRepository implements IRecipeRepository {
     @override
     Future remove(int id) async {
         bool result = await _databaseService.remove(id);
+        if (!result) {
+            throw Exception;
+        }
+    }
+
+    @override
+    Future removeAll() async {
+        bool result = await _databaseService.removeAll();
         if (!result) {
             throw Exception;
         }

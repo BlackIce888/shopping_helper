@@ -5,10 +5,12 @@
 
 import 'package:shopping_helper/src/Domain/Model/Entity/Shop.dart';
 
-class GetShopListAction {
+class LoadShopListAction {}
+
+class ShopListLoadedAction {
     final List<Shop> shopList;
 
-    GetShopListAction(this.shopList);
+    ShopListLoadedAction(this.shopList);
 }
 
 class CreateShopAction {
@@ -22,5 +24,3 @@ class RemoveShopAction {
 
   RemoveShopAction(this.shop);
 }
-
-class RemoveAllShopsAction {}

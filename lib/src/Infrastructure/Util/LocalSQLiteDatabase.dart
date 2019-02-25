@@ -51,24 +51,24 @@ class LocalSQLiteDatabase {
         await db.execute(
             "CREATE TABLE shop(id INTEGER PRIMARY KEY, name TEXT NOT NULL);");
         await db.execute(
-            "CREATE TABLE product(id INTEGER PRIMARY KEY, shop_id INTEGER, name TEXT, price INTEGER, FOREIGN KEY (shop_id) REFERENCES shop(id) ON DELETE CASCADE);");
+            "CREATE TABLE product(id INTEGER PRIMARY KEY, shop_id INTEGER, name TEXT, price DOUBLE, FOREIGN KEY (shop_id) REFERENCES shop(id) ON DELETE CASCADE);");
         await db.execute(
             "CREATE TABLE recipe(id INTEGER PRIMARY KEY, name TEXT, prep_time INTEGER, cook_time INTEGER, ingredients BLOB, instructions TEXT);");
 
         await db.execute(
-            "INSERT INTO shop VALUES (1, 'Aldi');"
+            "INSERT INTO shop VALUES (NULL, 'Aldi');"
         );
         await db.execute(
-            "INSERT INTO shop VALUES (2, 'Lidl');"
+            "INSERT INTO shop VALUES (NULL, 'Lidl');"
         );
         await db.execute(
-            "INSERT INTO product VALUES (1, 1, 'Pringles', 229);"
+            "INSERT INTO product VALUES (NULL, 1, 'Pringles', 2.29);"
         );
         await db.execute(
-            "INSERT INTO product VALUES (2, 1, 'Kaffeefilter', 79);"
+            "INSERT INTO product VALUES (NULL, 1, 'Kaffeefilter', 0.79);"
         );
         await db.execute(
-            "INSERT INTO product VALUES (3, 2, 'Kaffeefilter', 89);"
+            "INSERT INTO product VALUES (NULL, 2, 'Kaffeefilter', 0.89);"
         );
     }
 }

@@ -10,7 +10,7 @@ class Shop {
     String _name;
 
     Shop(id, name) {
-        id == null ? throw ArgumentException : this._id = id;
+        this._id = id;
         name == null ? throw ArgumentException : this._name = name;
     }
 

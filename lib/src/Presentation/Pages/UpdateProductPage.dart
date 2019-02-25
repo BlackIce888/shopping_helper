@@ -4,25 +4,29 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:flutter_masked_text/flutter_masked_text.dart';
 import 'package:redux/redux.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:shopping_helper/src/Domain/Model/Entity/Product.dart';
 import 'package:shopping_helper/src/Presentation/Components/ProductForm.dart';
 import 'package:shopping_helper/src/Presentation/Framework/Models/AppState.dart';
 import 'package:shopping_helper/src/Presentation/Framework/Models/CreateProductViewModel.dart';
 
-class CreateProductPage extends StatefulWidget {
+class UpdateProductPage extends StatefulWidget {
+    final Product product;
+
+    UpdateProductPage(this.product);
+
     @override
-    _CreateProductPageState createState() => new _CreateProductPageState();
+    _UpdateProductPageState createState() => new _UpdateProductPageState();
 }
 
-class _CreateProductPageState extends State<CreateProductPage> {
+class _UpdateProductPageState extends State<UpdateProductPage> {
 
     @override
     Widget build(BuildContext context) {
         return Scaffold(
             appBar: AppBar(
-                title: Text('Create Product'),
+                title: Text('Update Product (ID: ' + widget.product.id.toString() + ')'),
             ),
             body: StoreConnector<AppState, CreateProductViewModel>(
                 converter: (Store<AppState> store) => CreateProductViewModel.create
@@ -30,7 +34,7 @@ class _CreateProductPageState extends State<CreateProductPage> {
                 builder: (BuildContext context, CreateProductViewModel viewModel) =>
                     Column(
                         children: <Widget>[
-                            ProductForm(viewModel),
+                            ProductForm(viewModel, widget.product),
                         ],
                     ),
             ),

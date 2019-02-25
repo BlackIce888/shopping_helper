@@ -4,11 +4,15 @@
  */
 
 abstract class ISQLiteDatabaseService {
-  Future<List<Map<String, dynamic>>> findAll();
+    Future<List<Map<String, dynamic>>> findAll();
 
-  Future<List<Map<String, dynamic>>> findById(int id);
+    Future<List<Map<String, dynamic>>> findById(int id);
 
-  Future<bool> save(Map<String, dynamic> values);
+    Future<bool> update(Map<String, dynamic> values);
 
-  Future<bool> remove(int id);
+    Future<bool> insert(Map<String, dynamic> values);
+
+    Future<bool> removeAll();
+
+    Future<bool> remove(int id);
 }

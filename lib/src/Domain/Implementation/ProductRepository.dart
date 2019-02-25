@@ -37,8 +37,16 @@ class ProductRepository implements IProductRepository {
     }
 
     @override
-    Future save(Product product) async {
-        bool result = await _databaseService.save(product.toJson());
+    Future update(Product product) async {
+        bool result = await _databaseService.update(product.toJson());
+        if (!result) {
+            throw Exception;
+        }
+    }
+
+    @override
+    Future insert(Product product) async {
+        bool result = await _databaseService.insert(product.toJson());
         if (!result) {
             throw Exception;
         }
@@ -47,6 +55,14 @@ class ProductRepository implements IProductRepository {
     @override
     Future remove(int id) async {
         bool result = await _databaseService.remove(id);
+        if (!result) {
+            throw Exception;
+        }
+    }
+
+    @override
+    Future removeAll() async {
+        bool result = await _databaseService.removeAll();
         if (!result) {
             throw Exception;
         }

@@ -6,11 +6,15 @@
 import 'package:shopping_helper/src/Domain/Model/Entity/Product.dart';
 
 abstract class IProductRepository {
-  Future<List<Product>> getAll();
+    Future<List<Product>> getAll();
 
-  Future<Product> getById(int id);
+    Future<Product> getById(int id);
 
-  void save(Product product);
+    void update(Product product);
 
-  void remove(int id);
+    void insert(Product product);
+
+    void remove(int id);
+
+    void removeAll();
 }

@@ -46,7 +46,33 @@ class SQLiteDatabaseService implements ISQLiteDatabaseService {
     }
 
     @override
-    Future<bool> save(Map<String, dynamic> values) async {
+    Future<bool> removeAll() async {
+        Database database = await _db;
+        try {
+            await database.delete(_tableName);
+            return true;
+        } catch (Exception) {
+            return false;
+        }
+    }
+
+    @override
+    Future<bool> update(Map<String, dynamic> values) async {
+        Database database = await _db;
+        try {
+            if (values.containsKey('id')) {
+                await database.update(_tableName, values, where: 'id = ?', whereArgs: [values['id']]);
+                return true;
+            } else return false;
+
+
+        } catch (Exception) {
+            return false;
+        }
+    }
+
+    @override
+    Future<bool> insert(Map<String, dynamic> values) async {
         Database database = await _db;
         try {
             await database.insert(_tableName, values);

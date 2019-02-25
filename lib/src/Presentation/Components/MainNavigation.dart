@@ -13,13 +13,13 @@ class MainNavigation extends StatelessWidget {
             child: ListView(
                 children: <Widget>[
                     DrawerHeader(
-                        child: Text('myLittleShoppingHelper'),
+                        child: Text('ShoppingHelper'),
                     ),
                     ListTile(
                         leading: Icon(Icons.format_list_numbered),
                         title: Text('Shopping List'),
                         onTap: () {
-                            Navigator.of(context).pushReplacementNamed('/home');
+                            Navigator.of(context).pushReplacementNamed('/shopping');
                         },
                     ),
                     ListTile(

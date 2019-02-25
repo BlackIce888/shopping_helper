@@ -6,30 +6,30 @@
 import 'package:flutter/material.dart';
 import 'package:redux/redux.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:shopping_helper/src/Presentation/Components/ShoppingListView.dart';
 import 'package:shopping_helper/src/Presentation/Framework/Models/AppState.dart';
-import 'package:shopping_helper/src/Presentation/Framework/Models/ProductViewModel.dart';
+import 'package:shopping_helper/src/Presentation/Framework/Models/ShoppingViewModel.dart';
 import 'package:shopping_helper/src/Presentation/Components/Components.dart';
 
-class ProductPage extends StatelessWidget {
+class ShoppingPage extends StatelessWidget {
     @override
     Widget build(BuildContext context) {
         return Scaffold(
             appBar: AppBar(
-                title: Text('Products'),
+                title: Text('Shopping List'),
             ),
             drawer: MainNavigation(),
-            body: StoreConnector<AppState, ProductViewModel>(
+            body: StoreConnector<AppState, ShoppingViewModel>(
                 converter: (Store<AppState> store) =>
-                    ProductViewModel.create(store),
-                builder: (BuildContext context, ProductViewModel viewModel) =>
+                    ShoppingViewModel.create(store),
+                builder: (BuildContext context, ShoppingViewModel viewModel) =>
                     Column(
                         children: <Widget>[
-                            Expanded(child: ProductListView(viewModel)),
-                            RemoveButton('Delete all', 'Are you sure you want to delete all products?', viewModel.onRemoveAllProducts),
+                            Expanded(child: ShoppingListView(viewModel)),
+                            RemoveButton('Delete all', 'Are you sure you want to delete all products?', viewModel.onClearShoppingList),
                         ],
                     ),
             ),
-            floatingActionButton: CreateProductButton(),
         );
     }
 }

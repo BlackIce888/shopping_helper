@@ -15,7 +15,7 @@ class Recipe {
     String _instructions;
 
     Recipe(int id, String name, int prepTime, int cookTime, List<ProductAmount> ingredients, String instructions) {
-      id == null ? throw ArgumentException : this._id = id;
+      this._id = id;
       name == null ? throw ArgumentException : this._name = name;
       prepTime == null ? throw ArgumentException : this._prepTime = prepTime;
       cookTime == null ? throw ArgumentException : this._cookTime = cookTime;

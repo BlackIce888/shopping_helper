@@ -3,63 +3,48 @@
  * Andreas Diesendorf <andiesendorf@gmail.com>
  */
 
-import 'package:flutter/material.dart';
 import 'package:redux/redux.dart';
 import 'package:shopping_helper/src/Domain/Model/Entity/Product.dart';
 import 'package:shopping_helper/src/Domain/Model/Entity/Shop.dart';
-import 'package:shopping_helper/src/Presentation/Framework/Actions/ProductActions.dart';
+import 'package:shopping_helper/src/Presentation/Framework/Actions/Actions.dart';
 import 'package:shopping_helper/src/Presentation/Framework/Models/AppState.dart';
 
 class CreateProductViewModel {
     final String pageTitle = 'Add Product';
-    final String name;
-    final int shopId;
-    final int price;
-    final List<DropdownMenuItem> dropdownList;
+    final List<Shop> shopList;
     final Function(Product) onCreateProduct;
+    final Function(Product) onUpdateProduct;
+    final Function(Shop) onCreateShop;
 
     CreateProductViewModel({
-        this.name,
-        this.shopId,
-        this.price,
-        this.dropdownList,
+        this.shopList,
         this.onCreateProduct,
+        this.onUpdateProduct,
+        this.onCreateShop,
     });
 
     //store.state.shopList
 
     factory CreateProductViewModel.create(Store<AppState> store) {
-        List<DropdownMenuItem> dropdownItems = [];
-        for (Shop shop in store.state.shopList) {
-            dropdownItems.add(
-                DropdownMenuItem(
-                    value: shop.id,
-                    child: Text(shop.name)
-                )
-            );
-        }
-        dropdownItems.add(
-            DropdownMenuItem(
-                value: 0,
-                child: FlatButton(
-                    onPressed: null,
-                    child: Row(
-                        children: <Widget>[
-                            Icon(Icons.add_circle),
-                            Text('Add shop'),
-                        ],
-                    ),
-                ),
-            )
-        );
 
         _onCreateProduct(Product product) {
             store.dispatch(CreateProductAction(product));
         }
 
+        _onUpdateProduct(Product product) {
+            store.dispatch(UpdateProductAction(product));
+            store.dispatch(UpdateShoppingListAction(product));
+        }
+
+        _onCreateShop(Shop shop) {
+            store.dispatch(CreateShopAction(shop));
+        }
+
         return CreateProductViewModel(
-            dropdownList: dropdownItems,
+            shopList: store.state.shopList,
             onCreateProduct: _onCreateProduct,
+            onUpdateProduct: _onUpdateProduct,
+            onCreateShop: _onCreateShop,
         );
     }
 }

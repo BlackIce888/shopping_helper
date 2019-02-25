@@ -36,8 +36,8 @@ class ShopRepository implements IShopRepository {
     }
 
     @override
-    Future save(Shop shop) async {
-        bool result = await _databaseService.save(shop.toJson());
+    Future insert(Shop shop) async {
+        bool result = await _databaseService.insert(shop.toJson());
         if (!result) {
             throw Exception;
         }
