@@ -46,11 +46,6 @@ class _ProductFormState extends State<ProductForm> {
 
     @override
     Widget build(BuildContext context) {
-        print(_id);
-        print(_shopId);
-        print(_name);
-        print(_price);
-
         return Form(
             key: _formKey,
             child: Container(
@@ -102,8 +97,6 @@ class _ProductFormState extends State<ProductForm> {
                                     labelText: 'Price',
                                 ),
                                 keyboardType: TextInputType.number,
-                                inputFormatters: [
-                                    WhitelistingTextInputFormatter.digitsOnly],
                                 onSaved: (input) =>
                                     _price = _controller.numberValue,
                             ),
