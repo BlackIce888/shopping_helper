@@ -63,7 +63,16 @@ class _ProductFormState extends State<ProductForm> {
                                 decoration: InputDecoration(
                                     labelText: 'Name',
                                 ),
-                                validator: StringValidator.required(),
+                                validator: StringValidator.builder(
+                                    rules: [
+                                        StringValidatorRules.required,
+                                        StringValidatorRules.length,
+                                    ],
+                                    options: StringValidatorOptions(
+                                        minLength: 5,
+                                        maxLength: 20,
+                                    ),
+                                ),
                                 onSaved: (input) => _name = input,
                             ),
                         ),
@@ -170,7 +179,16 @@ class _ProductFormState extends State<ProductForm> {
                         key: _formKey,
                         child: TextFormField(
                             onSaved: (input) => _shopName = input,
-                            validator: StringValidator.required(),
+                            validator: StringValidator.builder(
+                                rules: [
+                                    StringValidatorRules.required,
+                                    StringValidatorRules.length
+                                ],
+                                options: StringValidatorOptions(
+                                    minLength: 5,
+                                    maxLength: 15,
+                                ),
+                            ),
                         ),
                     ),
                     actions: <Widget>[
