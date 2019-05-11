@@ -35,38 +35,25 @@ class ProductListView extends StatelessWidget {
             _productList.where((product) => product.shopId == shop.id).map((
                 Product product) {
                 _children.add(
-                    Dismissible(
-                        key: ValueKey(product.id),
-                        child: ListTile(
-                            title: Text(product.name),
-                            leading: IconButton(
-                                icon: Icon(Icons.arrow_back),
-                                onPressed: () => model.onAddToShoppingList(product),
-                            ),
-                            trailing: IconButton(
-                                icon: Icon(Icons.delete),
-                                onPressed: () => model.onRemoveProduct(product),
-                            ),
-                            subtitle: Text(
-                                Money.fromDouble(product.price, Currency('EUR'))
-                                    .toString()),
-                            contentPadding: EdgeInsets.symmetric(
-                                horizontal: 25.0),
-                            onTap: () =>
-                                Navigator.of(context).push(
-                                    MaterialPageRoute(
-                                        builder: (BuildContext context) =>
-                                            UpdateProductPage(product)
-                                    ),
-                                ),
+                    ListTile(
+                        title: Text(product.name),
+                        leading: IconButton(
+                            icon: Icon(Icons.arrow_back),
+                            onPressed: () => model.onAddToShoppingList(product),
                         ),
-                        onDismissed: (DismissDirection direction) {
-                            model.onRemoveProduct(product);
-                        },
-                        background: Container(
-                            color: Colors.red,
-                            child: Center(
-                                child: Icon(Icons.delete),
+                        trailing: IconButton(
+                            icon: Icon(Icons.delete),
+                            onPressed: () => model.onRemoveProduct(product),
+                        ),
+                        subtitle: Text(
+                            Money.fromDouble(product.price, Currency('EUR'))
+                                .toString()),
+                        contentPadding: EdgeInsets.symmetric(
+                            horizontal: 25.0),
+                        onTap: () => Navigator.of(context).push(
+                            MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    UpdateProductPage(product)
                             ),
                         ),
                     ),

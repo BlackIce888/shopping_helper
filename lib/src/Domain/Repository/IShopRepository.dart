@@ -10,7 +10,7 @@ abstract class IShopRepository {
 
     Future<Shop> getById(int id);
 
-    void insert(Shop shop);
+    Future insert(Shop shop);
 
-    void remove(int id);
+    Future remove(int id);
 }

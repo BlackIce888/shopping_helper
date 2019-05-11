@@ -4,11 +4,11 @@
  */
 
 import 'package:redux/redux.dart';
-import 'package:shopping_helper/src/Domain/Implementation/ShopRepository.dart';
+import 'package:shopping_helper/src/Domain/Repository/IShopRepository.dart';
 import 'package:shopping_helper/src/Presentation/Framework/Actions/Actions.dart';
 import 'package:shopping_helper/src/Presentation/Framework/Models/AppState.dart';
 
-List<Middleware<AppState>> getShopMiddleware(ShopRepository shopRepo) {
+List<Middleware<AppState>> getShopMiddleware(IShopRepository shopRepo) {
     return [
         TypedMiddleware<AppState, LoadShopListAction>(
             _getShopList(shopRepo)),
@@ -23,7 +23,7 @@ void Function(
     Store<AppState> store,
     LoadShopListAction action,
     NextDispatcher next,
-    ) _getShopList(ShopRepository repository) {
+    ) _getShopList(IShopRepository repository) {
     return (store, action, next) {
         repository.getAll().then((_) {
             next(ShopListLoadedAction(_));
@@ -35,7 +35,7 @@ void Function(
     Store<AppState> store,
     RemoveShopAction action,
     NextDispatcher next,
-    ) _removeShop(ShopRepository repository) {
+    ) _removeShop(IShopRepository repository) {
     return (store, action, next) {
         repository.remove(action.shop.id).then((_) {
             next(action);
@@ -47,7 +47,7 @@ void Function(
     Store<AppState> store,
     CreateShopAction action,
     NextDispatcher next,
-    ) _createShop(ShopRepository repository) {
+    ) _createShop(IShopRepository repository) {
     return (store, action, next) {
         repository.insert(action.shop).then((_) {
             next(action);

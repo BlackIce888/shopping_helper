@@ -10,11 +10,11 @@ abstract class IRecipeRepository {
 
     Future<Recipe> getById(int id);
 
-    void update(Recipe recipe);
+    Future update(Recipe recipe);
 
-    void insert(Recipe recipe);
+    Future insert(Recipe recipe);
 
-    void remove(int id);
+    Future remove(int id);
 
-    void removeAll();
+    Future removeAll();
 }

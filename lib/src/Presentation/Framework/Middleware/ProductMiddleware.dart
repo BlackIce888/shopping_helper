@@ -4,11 +4,11 @@
  */
 
 import 'package:redux/redux.dart';
-import 'package:shopping_helper/src/Domain/Implementation/ProductRepository.dart';
+import 'package:shopping_helper/src/Domain/Repository/IProductRepository.dart';
 import 'package:shopping_helper/src/Presentation/Framework/Actions/Actions.dart';
 import 'package:shopping_helper/src/Presentation/Framework/Models/AppState.dart';
 
-List<Middleware<AppState>> getProductMiddleware(ProductRepository productRepo) {
+List<Middleware<AppState>> getProductMiddleware(IProductRepository productRepo) {
     return [
         TypedMiddleware<AppState, LoadProductListAction>(
             _getProductList(productRepo)),
@@ -27,7 +27,7 @@ void Function(
     Store<AppState> store,
     LoadProductListAction action,
     NextDispatcher next,
-    ) _getProductList(ProductRepository repository) {
+    ) _getProductList(IProductRepository repository) {
     return (store, action, next) {
         repository.getAll().then((_) {
             next(ProductListLoadedAction(_));
@@ -39,7 +39,7 @@ void Function(
     Store<AppState> store,
     RemoveProductAction action,
     NextDispatcher next,
-    ) _removeProduct(ProductRepository repository) {
+    ) _removeProduct(IProductRepository repository) {
     return (store, action, next) {
         repository.remove(action.product.id).then((_) {
             next(action);
@@ -51,7 +51,7 @@ void Function(
     Store<AppState> store,
     RemoveAllProductsAction action,
     NextDispatcher next,
-    ) _removeAllProducts(ProductRepository repository) {
+    ) _removeAllProducts(IProductRepository repository) {
     return (store, action, next) {
         repository.removeAll().then((_) {
             next(action);
@@ -63,7 +63,7 @@ void Function(
     Store<AppState> store,
     UpdateProductAction action,
     NextDispatcher next,
-    ) _updateProduct(ProductRepository repository) {
+    ) _updateProduct(IProductRepository repository) {
     return (store, action, next) {
         repository.update(action.product).then((_) {
             store.dispatch(LoadProductListAction());
@@ -76,7 +76,7 @@ void Function(
     Store<AppState> store,
     CreateProductAction action,
     NextDispatcher next,
-    ) _createProduct(ProductRepository repository) {
+    ) _createProduct(IProductRepository repository) {
     return (store, action, next) {
         repository.insert(action.product).then((_) {
             store.dispatch(LoadProductListAction());

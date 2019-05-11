@@ -4,11 +4,11 @@
  */
 
 import 'package:redux/redux.dart';
-import 'package:shopping_helper/src/Domain/Implementation/RecipeRepository.dart';
+import 'package:shopping_helper/src/Domain/Repository/IRecipeRepository.dart';
 import 'package:shopping_helper/src/Presentation/Framework/Actions/Actions.dart';
 import 'package:shopping_helper/src/Presentation/Framework/Models/AppState.dart';
 
-List<Middleware<AppState>> getRecipeMiddleware(RecipeRepository recipeRepo) {
+List<Middleware<AppState>> getRecipeMiddleware(IRecipeRepository recipeRepo) {
     return [
         TypedMiddleware<AppState, LoadRecipeListAction>(
             _getRecipeList(recipeRepo)),
@@ -27,7 +27,7 @@ void Function(
     Store<AppState> store,
     LoadRecipeListAction action,
     NextDispatcher next,
-    ) _getRecipeList(RecipeRepository repository) {
+    ) _getRecipeList(IRecipeRepository repository) {
     return (store, action, next) {
         repository.getAll().then((_) {
             next(RecipeListLoadedAction(_));
@@ -39,7 +39,7 @@ void Function(
     Store<AppState> store,
     RemoveRecipeAction action,
     NextDispatcher next,
-    ) _removeRecipe(RecipeRepository repository) {
+    ) _removeRecipe(IRecipeRepository repository) {
     return (store, action, next) {
         repository.remove(action.recipe.id).then((_) {
             next(action);
@@ -51,7 +51,7 @@ void Function(
     Store<AppState> store,
     RemoveAllRecipesAction action,
     NextDispatcher next,
-    ) _removeAllRecipes(RecipeRepository repository) {
+    ) _removeAllRecipes(IRecipeRepository repository) {
     return (store, action, next) {
         repository.removeAll().then((_) {
             next(action);
@@ -63,7 +63,7 @@ void Function(
     Store<AppState> store,
     CreateRecipeAction action,
     NextDispatcher next,
-    ) _createRecipe(RecipeRepository repository) {
+    ) _createRecipe(IRecipeRepository repository) {
     return (store, action, next) {
         repository.insert(action.recipe).then((_) {
             next(action);
@@ -76,7 +76,7 @@ void Function(
     Store<AppState> store,
     UpdateRecipeAction action,
     NextDispatcher next,
-    ) _updateRecipe(RecipeRepository repository) {
+    ) _updateRecipe(IRecipeRepository repository) {
     return (store, action, next) {
         repository.update(action.recipe).then((_) {
             next(action);

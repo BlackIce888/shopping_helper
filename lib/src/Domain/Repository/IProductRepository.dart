@@ -10,11 +10,11 @@ abstract class IProductRepository {
 
     Future<Product> getById(int id);
 
-    void update(Product product);
+    Future update(Product product);
 
-    void insert(Product product);
+    Future insert(Product product);
 
-    void remove(int id);
+    Future remove(int id);
 
-    void removeAll();
+    Future removeAll();
 }

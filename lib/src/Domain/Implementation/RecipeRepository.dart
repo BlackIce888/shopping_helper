@@ -5,14 +5,12 @@
 
 import 'package:shopping_helper/src/Domain/Model/Entity/Recipe.dart';
 import 'package:shopping_helper/src/Domain/Repository/IRecipeRepository.dart';
-import 'package:shopping_helper/src/Infrastructure/Implementation/SQLiteDatabaseService.dart';
+import 'package:shopping_helper/src/Infrastructure/Service/IDatabaseService.dart';
 
 class RecipeRepository implements IRecipeRepository {
-    static final RecipeRepository instance = RecipeRepository._();
-    static final String _tableName = 'recipe';
-    final SQLiteDatabaseService _databaseService = SQLiteDatabaseService(_tableName);
+    final IDatabaseService _databaseService;
 
-    RecipeRepository._();
+    RecipeRepository(this._databaseService);
 
     @override
     Future<Recipe> getById(int id) async {

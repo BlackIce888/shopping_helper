@@ -3,7 +3,7 @@
  * Andreas Diesendorf <andiesendorf@gmail.com>
  */
 
-abstract class ISQLiteDatabaseService {
+abstract class IDatabaseService {
     Future<List<Map<String, dynamic>>> findAll();
 
     Future<List<Map<String, dynamic>>> findById(int id);

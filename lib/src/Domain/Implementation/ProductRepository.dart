@@ -5,14 +5,12 @@
 
 import 'package:shopping_helper/src/Domain/Model/Entity/Product.dart';
 import 'package:shopping_helper/src/Domain/Repository/IProductRepository.dart';
-import 'package:shopping_helper/src/Infrastructure/Implementation/SQLiteDatabaseService.dart';
+import 'package:shopping_helper/src/Infrastructure/Service/IDatabaseService.dart';
 
 class ProductRepository implements IProductRepository {
-    static final ProductRepository instance = ProductRepository._();
-    static final String _tableName = 'product';
-    final SQLiteDatabaseService _databaseService = SQLiteDatabaseService(_tableName);
+    final IDatabaseService _databaseService;
 
-    ProductRepository._();
+    ProductRepository(this._databaseService);
 
     @override
     Future<Product> getById(int id) async {

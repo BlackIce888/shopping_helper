@@ -3,11 +3,11 @@
  * Andreas Diesendorf <andiesendorf@gmail.com>
  */
 
-import 'package:shopping_helper/src/Infrastructure/Service/ISQLiteDatabaseService.dart';
+import 'package:shopping_helper/src/Infrastructure/Service/IDatabaseService.dart';
 import 'package:shopping_helper/src/Infrastructure/Util/LocalSQLiteDatabase.dart';
 import 'package:sqflite/sqflite.dart';
 
-class SQLiteDatabaseService implements ISQLiteDatabaseService {
+class SQLiteDatabaseService implements IDatabaseService {
     final Future<Database> _db = LocalSQLiteDatabase.instance.database;
     final String _tableName;
 

@@ -9,6 +9,7 @@ import 'package:redux/redux.dart';
 import 'package:shopping_helper/src/Domain/Implementation/ProductRepository.dart';
 import 'package:shopping_helper/src/Domain/Implementation/RecipeRepository.dart';
 import 'package:shopping_helper/src/Domain/Implementation/ShopRepository.dart';
+import 'package:shopping_helper/src/Infrastructure/Implementation/SQLiteDatabaseService.dart';
 import 'package:shopping_helper/src/Presentation/Framework/Actions/Actions.dart';
 import 'package:shopping_helper/src/Presentation/Framework/Models/AppState.dart';
 import 'package:shopping_helper/src/Presentation/Framework/Reducers/AppStateReducer.dart';
@@ -25,13 +26,12 @@ class ShoppingHelperApp extends StatelessWidget {
 
     ShoppingHelperApp({
         Key key,
-        ProductRepository productRepository
     }) : store = Store<AppState>(
         appStateReducer,
         middleware: init(
-            ProductRepository.instance,
-            ShopRepository.instance,
-            RecipeRepository.instance
+            ProductRepository(SQLiteDatabaseService('product')),
+            ShopRepository(SQLiteDatabaseService('shop')),
+            RecipeRepository(SQLiteDatabaseService('recipe')),
         ),
         initialState: AppState.initialState(),
     ),
