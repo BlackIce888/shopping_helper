@@ -4,6 +4,7 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:shopping_helper/src/Presentation/Pages/PageContainer.dart';
 
 class MainNavigation extends StatelessWidget {
 
@@ -19,21 +20,21 @@ class MainNavigation extends StatelessWidget {
                         leading: Icon(Icons.format_list_numbered),
                         title: Text('Shopping List'),
                         onTap: () {
-                            Navigator.of(context).pushReplacementNamed('/shopping');
+                            PageContainer.controller.jumpToPage(0);
                         },
                     ),
                     ListTile(
                         leading: Icon(Icons.fastfood),
                         title: Text('Products'),
                         onTap: () {
-                            Navigator.of(context).pushReplacementNamed('/products');
+                            PageContainer.controller.jumpToPage(1);
                         },
                     ),
                     ListTile(
                         leading: Icon(Icons.library_books),
                         title: Text('Recipes'),
                         onTap: () {
-                            Navigator.of(context).pushReplacementNamed('/recipes');
+                            PageContainer.controller.jumpToPage(0);
                         },
                     ),
                 ],

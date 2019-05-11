@@ -26,7 +26,7 @@ class ShoppingPage extends StatelessWidget {
                     Column(
                         children: <Widget>[
                             Expanded(child: ShoppingListView(viewModel)),
-                            RemoveButton('Delete all', 'Are you sure you want to delete all products?', viewModel.onClearShoppingList),
+                            RemoveButton('Delete all', 'Are you sure you want to clear your Shopping List?', viewModel.onClearShoppingList),
                         ],
                     ),
             ),

@@ -14,6 +14,7 @@ import 'package:shopping_helper/src/Presentation/Framework/Actions/Actions.dart'
 import 'package:shopping_helper/src/Presentation/Framework/Models/AppState.dart';
 import 'package:shopping_helper/src/Presentation/Framework/Reducers/AppStateReducer.dart';
 import 'package:shopping_helper/src/Presentation/Pages/CreateProductPage.dart';
+import 'package:shopping_helper/src/Presentation/Pages/PageContainer.dart';
 import 'package:shopping_helper/src/Presentation/Pages/ProductPage.dart';
 import 'package:shopping_helper/src/Presentation/Pages/ShoppingPage.dart';
 import 'package:shopping_helper/src/Presentation/Framework/Middleware/AppMiddleware.dart';
@@ -48,13 +49,11 @@ class ShoppingHelperApp extends StatelessWidget {
                 theme: ThemeData(
                     primarySwatch: Colors.teal,
                 ),
-                home: ProductPage(),
+                home: PageContainer(),
                 routes:
                 <String, WidgetBuilder>{
-                    '/shopping': (BuildContext context) => ShoppingPage(),
-                    '/products': (BuildContext context) => ProductPage(),
-                    //'/recipes': (BuildContext context) => RecipesPage(),
-                    '/products/create': (BuildContext context) => CreateProductPage(),
+                    '/index': (BuildContext context) => PageContainer(),
+                    '/createProduct': (BuildContext context) => CreateProductPage(),
                 },
             ),
         );

@@ -11,7 +11,7 @@ class CreateProductButton extends StatelessWidget {
         return FloatingActionButton(
             tooltip: 'Add an Item',
             child: Icon(Icons.add),
-            onPressed: () => Navigator.of(context).pushNamed('/products/create'),
+            onPressed: () => Navigator.of(context).pushNamed('/createProduct'),
         );
     }
 }

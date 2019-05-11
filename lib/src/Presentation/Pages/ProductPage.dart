@@ -16,6 +16,9 @@ class ProductPage extends StatelessWidget {
         return Scaffold(
             appBar: AppBar(
                 title: Text('Products'),
+                actions: <Widget>[
+                    IconButton(icon: Icon(Icons.filter), onPressed: () => _openFilterDialog(context)),
+                ],
             ),
             drawer: MainNavigation(),
             body: StoreConnector<AppState, ProductViewModel>(
@@ -30,6 +33,61 @@ class ProductPage extends StatelessWidget {
                     ),
             ),
             floatingActionButton: CreateProductButton(),
+        );
+    }
+
+    _openFilterDialog(BuildContext context) async {
+        return await showDialog(
+            context: context,
+            builder: (BuildContext context) {
+                return AlertDialog(
+                    title: Text('Filter Options'),
+                    content: Form(
+                        key: Key('filters'),
+                        child: Column(
+                            children: <Widget>[
+                                TextFormField(
+                                    decoration: InputDecoration(
+                                        labelText: 'Product name',
+                                    )
+                                ),
+                                DropdownButtonFormField<String>(
+                                    value: 'below',
+                                    items: [
+                                        DropdownMenuItem(value: 'below', child: Text('below')),
+                                        DropdownMenuItem(value: 'above', child: Text('above')),
+                                    ],
+                                    decoration: InputDecoration(
+                                        labelText: 'Price',
+                                    ),
+                                ),
+                                TextFormField(),
+                                DropdownButtonFormField<String>(
+                                    value: 'Aldi',
+                                    items: [
+                                        DropdownMenuItem(value: 'Aldi', child: Text('Aldi')),
+                                        DropdownMenuItem(value: 'Lidl', child: Text('Lidl')),
+                                        DropdownMenuItem(value: 'Penny', child: Text('Penny')),
+                                    ],
+                                    decoration: InputDecoration(
+                                        labelText: 'Shop',
+                                    ),
+                                ),
+
+
+                            ],
+                        ),
+                    ),
+                    actions: <Widget>[
+                        FlatButton(
+                            child: Text('Submit'),
+                            onPressed: () {
+                                Navigator.of(context).pop();
+                            }
+                        ),
+                    ],
+                );
+            }
         );
     }
 }
